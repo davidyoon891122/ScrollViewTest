@@ -8,12 +8,71 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    private let scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.backgroundColor = .yellow
+        scrollView.isScrollEnabled = true
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        return scrollView
+    }()
 
+    private let firstStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.backgroundColor = .black
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
+    private let secondStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.backgroundColor = .blue
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
+    private let thirdStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.backgroundColor = .red
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        view.addSubview(scrollView)
+        
+        scrollView.addSubview(firstStackView)
+        scrollView.addSubview(secondStackView)
+        scrollView.addSubview(thirdStackView)
+        
+        scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        scrollView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor).isActive = true
+        scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        scrollView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor).isActive = true
+        
+        
+        firstStackView.leftAnchor.constraint(equalTo: super.view.leftAnchor).isActive = true
+        firstStackView.rightAnchor.constraint(equalTo: super.view.rightAnchor).isActive = true
+        firstStackView.heightAnchor.constraint(equalToConstant: 500).isActive = true
+        
+        secondStackView.topAnchor.constraint(equalTo: firstStackView.bottomAnchor).isActive = true
+        secondStackView.leftAnchor.constraint(equalTo: super.view.leftAnchor).isActive = true
+        secondStackView.rightAnchor.constraint(equalTo: super.view.rightAnchor).isActive = true
+        secondStackView.heightAnchor.constraint(equalToConstant: 900).isActive = true
+        
+        
+        thirdStackView.topAnchor.constraint(equalTo: secondStackView.bottomAnchor).isActive = true
+        thirdStackView.leftAnchor.constraint(equalTo: super.view.leftAnchor).isActive = true
+        thirdStackView.rightAnchor.constraint(equalTo: super.view.rightAnchor).isActive = true
+        thirdStackView.heightAnchor.constraint(equalToConstant: 500).isActive = true
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height+1000)
+    }
+    
 
 }
 

@@ -38,15 +38,36 @@ class ViewController: UIViewController {
         return stackView
     }()
     
+    private let tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.backgroundColor = .purple
+        return tableView
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        addSubviews()
+        setLayoutConstrains()
+        tableView.delegate = self
+        tableView.dataSource = self
         
+        
+    }
+    
+    
+    private func addSubviews() {
         view.addSubview(scrollView)
         
         scrollView.addSubview(firstStackView)
         scrollView.addSubview(secondStackView)
         scrollView.addSubview(thirdStackView)
-        
+        //scrollView.addSubview(tableView)
+        view.addSubview(tableView)
+    }
+    
+    private func setLayoutConstrains() {
         scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         scrollView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor).isActive = true
         scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
@@ -67,12 +88,32 @@ class ViewController: UIViewController {
         thirdStackView.leftAnchor.constraint(equalTo: super.view.leftAnchor).isActive = true
         thirdStackView.rightAnchor.constraint(equalTo: super.view.rightAnchor).isActive = true
         thirdStackView.heightAnchor.constraint(equalToConstant: 500).isActive = true
+        
+        tableView.topAnchor.constraint(equalTo: thirdStackView.bottomAnchor).isActive = true
+        tableView.leftAnchor.constraint(equalTo: super.view.leftAnchor).isActive = true
+        tableView.rightAnchor.constraint(equalTo: super.view.rightAnchor).isActive = true
+        tableView.heightAnchor.constraint(equalToConstant: 500).isActive = true
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height+1000)
+        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height+2000)
+    }
+
+}
+
+extension ViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 30
     }
     
-
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell")!
+        cell.textLabel?.text = "test"
+        
+        return cell
+    }
+    
+    
 }
 

@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SVGKit
 
 class ViewController: UIViewController {
     
@@ -43,8 +42,14 @@ class ViewController: UIViewController {
         let tableView = UITableView()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.backgroundColor = .purple
         return tableView
+    }()
+    
+    private let imageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "circle")
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
     }()
     
     override func viewDidLoad() {
@@ -53,9 +58,12 @@ class ViewController: UIViewController {
         setLayoutConstrains()
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.backgroundView = nil
         
         
     }
+    
+    
     
     
     private func addSubviews() {
@@ -64,8 +72,8 @@ class ViewController: UIViewController {
         scrollView.addSubview(firstStackView)
         scrollView.addSubview(secondStackView)
         scrollView.addSubview(thirdStackView)
-        //scrollView.addSubview(tableView)
-        view.addSubview(tableView)
+        scrollView.addSubview(tableView)
+        scrollView.addSubview(imageView)
     }
     
     private func setLayoutConstrains() {
@@ -95,17 +103,23 @@ class ViewController: UIViewController {
         tableView.rightAnchor.constraint(equalTo: super.view.rightAnchor).isActive = true
         tableView.heightAnchor.constraint(equalToConstant: 500).isActive = true
         
+        imageView.topAnchor.constraint(equalTo: tableView.bottomAnchor).isActive = true
+        imageView.leftAnchor.constraint(equalTo: super.view.leftAnchor).isActive = true
+        imageView.rightAnchor.constraint(equalTo: super.view.rightAnchor).isActive = true
+        imageView.heightAnchor.constraint(equalToConstant: 300).isActive = true
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {
         scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height+2000)
+        tableView.backgroundView = UIImageView(image: UIImage(named: "circle"))
     }
 
 }
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 30
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

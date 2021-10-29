@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,6 +14,7 @@
 		AD2F065D27269B4E003646A2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD2F065B27269B4E003646A2 /* Main.storyboard */; };
 		AD2F065F27269B50003646A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD2F065E27269B50003646A2 /* Assets.xcassets */; };
 		AD2F066227269B50003646A2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD2F066027269B50003646A2 /* LaunchScreen.storyboard */; };
+		AD2F0670272BD400003646A2 /* circle.png in Resources */ = {isa = PBXBuildFile; fileRef = AD2F066F272BD400003646A2 /* circle.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		AD2F065E27269B50003646A2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AD2F066127269B50003646A2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AD2F066327269B50003646A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AD2F066F272BD400003646A2 /* circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle.png; sourceTree = "<group>"; };
 		B8ED16F0EACACF558F5AA83F /* Pods_ScrollViewTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ScrollViewTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -71,6 +73,7 @@
 		AD2F065427269B4E003646A2 /* ScrollViewTest */ = {
 			isa = PBXGroup;
 			children = (
+				AD2F066F272BD400003646A2 /* circle.png */,
 				AD2F065527269B4E003646A2 /* AppDelegate.swift */,
 				AD2F065727269B4E003646A2 /* SceneDelegate.swift */,
 				AD2F065927269B4E003646A2 /* ViewController.swift */,
@@ -88,7 +91,6 @@
 				3B2469F232EBD83ED4AFD304 /* Pods-ScrollViewTest.debug.xcconfig */,
 				2F3109DED97920CA623C8298 /* Pods-ScrollViewTest.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -154,6 +156,7 @@
 				AD2F066227269B50003646A2 /* LaunchScreen.storyboard in Resources */,
 				AD2F065F27269B50003646A2 /* Assets.xcassets in Resources */,
 				AD2F065D27269B4E003646A2 /* Main.storyboard in Resources */,
+				AD2F0670272BD400003646A2 /* circle.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -363,6 +366,18 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-l\"xml2\"",
+					"-framework",
+					"\"CocoaLumberjack\"",
+					"-framework",
+					"\"CoreText\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"SVGKit\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ycompany.ScrollViewTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -382,6 +397,18 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-l\"xml2\"",
+					"-framework",
+					"\"CocoaLumberjack\"",
+					"-framework",
+					"\"CoreText\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"SVGKit\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ycompany.ScrollViewTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";

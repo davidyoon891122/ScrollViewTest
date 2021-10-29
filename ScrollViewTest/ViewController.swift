@@ -11,7 +11,8 @@ class ViewController: UIViewController {
     
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
-        scrollView.backgroundColor = .yellow
+        //scrollView.backgroundColor = UIColor(patternImage: UIImage(named: "circle")!)
+        scrollView.layer.contents = UIImage(named: "circle")?.cgImage
         scrollView.isScrollEnabled = true
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
@@ -26,14 +27,14 @@ class ViewController: UIViewController {
     
     private let secondStackView: UIStackView = {
         let stackView = UIStackView()
-        stackView.backgroundColor = .blue
+        //stackView.backgroundColor = .blue
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
     
     private let thirdStackView: UIStackView = {
         let stackView = UIStackView()
-        stackView.backgroundColor = .red
+        //stackView.backgroundColor = .red
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
@@ -74,6 +75,7 @@ class ViewController: UIViewController {
         scrollView.addSubview(thirdStackView)
         scrollView.addSubview(tableView)
         scrollView.addSubview(imageView)
+        
     }
     
     private func setLayoutConstrains() {
@@ -112,20 +114,21 @@ class ViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height+2000)
-        tableView.backgroundView = UIImageView(image: UIImage(named: "circle"))
+        tableView.backgroundColor = .clear
     }
 
 }
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return 30
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell")!
         cell.textLabel?.text = "test"
-        
+        cell.textLabel?.textColor = .white
+        cell.backgroundColor = .clear
         return cell
     }
     
